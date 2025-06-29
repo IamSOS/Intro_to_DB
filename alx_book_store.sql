@@ -1,47 +1,47 @@
--- Create the database
-CREATE DATABASE IF NOT EXISTS alx_book_store;
+-- create the database
+create database if not exists alx_book_store;
 
--- Use the database
-USE alx_book_store;
+-- use the database
+use alx_book_store;
 
--- Authors table
-CREATE TABLE AUTHORS (
-    AUTHOR_ID INT AUTO_INCREMENT PRIMARY KEY,
-    AUTHOR_NAME VARCHAR(215) NOT NULL
+-- authors table
+create table authors (
+    author_id int auto_increment primary key,
+    author_name varchar(215) not null
 );
 
--- Books table
-CREATE TABLE BOOKS (
-    BOOK_ID INT AUTO_INCREMENT PRIMARY KEY,
-    TITLE VARCHAR(130) NOT NULL,
-    AUTHOR_ID INT,
-    PRICE DOUBLE NOT NULL,
-    PUBLICATION_DATE DATE,
-    FOREIGN KEY (AUTHOR_ID) REFERENCES AUTHORS(AUTHOR_ID)
+-- books table
+create table books (
+    book_id int auto_increment primary key,
+    title varchar(130) not null,
+    author_id int,
+    price double not null,
+    publication_date date,
+    foreign key (author_id) references authors(author_id)
 );
 
--- Customers table
-CREATE TABLE CUSTOMERS (
-    CUSTOMER_ID INT AUTO_INCREMENT PRIMARY KEY,
-    CUSTOMER_NAME VARCHAR(215) NOT NULL,
-    EMAIL VARCHAR(215) NOT NULL,
-    ADDRESS TEXT
+-- customers table
+create table customers (
+    customer_id int auto_increment primary key,
+    customer_name varchar(215) not null,
+    email varchar(215) not null,
+    address text
 );
 
--- Orders table
-CREATE TABLE ORDERS (
-    ORDER_ID INT AUTO_INCREMENT PRIMARY KEY,
-    CUSTOMER_ID INT,
-    ORDER_DATE DATE,
-    FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMERS(CUSTOMER_ID)
+-- orders table
+create table orders (
+    order_id int auto_increment primary key,
+    customer_id int,
+    order_date date,
+    foreign key (customer_id) references customers(customer_id)
 );
 
--- Order_Details table
-CREATE TABLE ORDER_DETAILS (
-    ORDERDETAILID INT AUTO_INCREMENT PRIMARY KEY,
-    ORDER_ID INT,
-    BOOK_ID INT,
-    QUANTITY DOUBLE NOT NULL,
-    FOREIGN KEY (ORDER_ID) REFERENCES ORDERS(ORDER_ID),
-    FOREIGN KEY (BOOK_ID) REFERENCES BOOKS(BOOK_ID)
+-- order_details table
+create table order_details (
+    orderdetailid int auto_increment primary key,
+    order_id int,
+    book_id int,
+    quantity double not null,
+    foreign key (order_id) references orders(order_id),
+    foreign key (book_id) references books(book_id)
 );
